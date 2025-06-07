@@ -320,14 +320,14 @@ void GxEPD2_1248c::_InitDisplay()
   S2.writeData(0x03); // reverse scan
   // booster soft start
   M1.writeCommand(0x06);
-  M1.writeData(0x27);  //A
-  M1.writeData(0x27);  //B
-  M1.writeData(0x18);  //C
+  M1.writeData(0x17);  //A
+  M1.writeData(0x17);  //B
+  M1.writeData(0x39);  //C
   M1.writeData(0x17);
   M2.writeCommand(0x06);
-  M2.writeData(0x27);
-  M2.writeData(0x27);
-  M2.writeData(0x18);
+  M2.writeData(0x17);
+  M2.writeData(0x17);
+  M2.writeData(0x39);
   M2.writeData(0x17);
   //resolution setting
   M1.writeCommand(0x61);
@@ -508,9 +508,9 @@ void GxEPD2_1248c::_waitWhileAnyBusy(const char* comment, uint16_t busy_time)
     {
       delay(1); // add some margin to become active
       bool nb_m1 = _busy_m1 >= 0 ? _busy_level != digitalRead(_busy_m1) : true;
-      bool nb_s1 = _busy_m1 >= 0 ? _busy_level != digitalRead(_busy_s1) : true;
-      bool nb_m2 = _busy_m1 >= 0 ? _busy_level != digitalRead(_busy_m2) : true;
-      bool nb_s2 = _busy_m1 >= 0 ? _busy_level != digitalRead(_busy_s2) : true;
+      bool nb_s1 = _busy_s1 >= 0 ? _busy_level != digitalRead(_busy_s1) : true;
+      bool nb_m2 = _busy_m2 >= 0 ? _busy_level != digitalRead(_busy_m2) : true;
+      bool nb_s2 = _busy_s2 >= 0 ? _busy_level != digitalRead(_busy_s2) : true;
       if (nb_m1 && nb_s1 && nb_m2 && nb_s2) break;
       delay(1);
       if (micros() - start > _busy_timeout)
