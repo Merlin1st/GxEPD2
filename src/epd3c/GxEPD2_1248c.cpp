@@ -256,6 +256,7 @@ void GxEPD2_1248c::hibernate()
   {
     _writeCommandAll(0x07); // deep sleep
     _writeDataAll(0xA5);    // check code
+    delay(300);
     _hibernating = true;
   }
 }
@@ -301,6 +302,7 @@ void GxEPD2_1248c::_PowerOff()
   {
     _writeCommandMaster(0x02); // power off
     _waitWhileAnyBusy("_PowerOff", power_on_time);
+    delay(300);
   }
   _power_is_on = false;
   _using_partial_mode = false;
