@@ -298,12 +298,10 @@ void GxEPD2_1248c::_PowerOn()
 
 void GxEPD2_1248c::_PowerOff()
 {
-  if (_power_is_on)
-  {
-    _writeCommandMaster(0x02); // power off
-    _waitWhileAnyBusy("_PowerOff", power_on_time);
-    delay(300);
-  }
+  _writeCommandMaster(0x02); // power off
+  _waitWhileAnyBusy("_PowerOff", power_on_time);
+  delay(300);
+
   _power_is_on = false;
   _using_partial_mode = false;
 }
